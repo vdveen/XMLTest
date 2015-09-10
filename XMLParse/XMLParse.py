@@ -4,14 +4,12 @@
 #Create a point from the coordinates
 #Calculate per station the percentage of availability
 
-import xml.etree.ElementTree as ET
+
 import arcpy
+import urlopen
 
-
-#The tree is the entire XML tree, and its root is the top level of the tree. In this case, 'stations'. 
-tree = ET.parse('livecyclehireupdates.xml')
-root = tree.getroot()
-
+#Get XML file root. FetchXML returns the root of the tree. 
+xml = urlopen.fetchxml()
 
 #Define station class
 class Station(object):
@@ -34,7 +32,7 @@ class Station(object):
 
 #Put station info into classes
 stationlist = []
-for stations in root:
+for stations in xml:
     name = stations[1].text
     x = float(stations[3].text)
     y = float(stations[4].text)
