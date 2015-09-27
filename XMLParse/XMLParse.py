@@ -25,10 +25,10 @@ class Station(object):
     def pointCreation(self):
         self.point = arcpy.Point(x,y)
 
-    #Calculate and print the nuber of bikes / total number of slots
+    #Calculate and print the nuber of bikes / total number of slots. 0.001 to prevent ZeroDivisionError
     def percentageBikes(self):
-        self.percent = float(self.nbBikes) / float(self.nbBikes + self.nbEmpty) * 100
-        print self.percent, '% of the bikes are available at', self.name
+        self.percent = float(self.nbBikes) / float(self.nbBikes + self.nbEmpty + 0.001) * 100
+        print(self.percent, '% of the bikes are available at', self.name)
 
 #Put station info into classes
 stationlist = []
